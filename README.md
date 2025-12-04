@@ -10,49 +10,103 @@
 Оба вида привычек при создании закрепляются за пользователем, изменять и удалять их может только создатель.
 У привычек есть признак публичности - если привычка публичная, то ее могут видеть в списке другие пользователи.
 
-## Точка входа
-Для перехода в веб-приложение запустите команду `python manage.py runserver`  и нажмите на ссылку в консоли `http://127.0.0.1:8000/` 
-Ссылка для регистрации пользователя - `http://127.0.0.1:8000/users/register/`
-Ссылка для входа по логину - `http://127.0.0.1:8000/users/login/`
+## Технологии
+* Django - веб-фреймворк
 
+* PostgreSQL - база данных
+
+* Redis - кеш и брокер сообщений
+
+* Celery - асинхронные задачи
+
+* Celery Beat - периодические задачи
+
+* Docker - контейнеризация
+
+* CI/CD - деплой на сервер
+
+## Предварительные требования
+- Docker Desktop (для Windows/Mac) или Docker Engine + Docker Compose (для Linux)
+
+- Git, GitHub.
+
+## Запуск сервера с помощью CI/CD на виртуальной машине
+#### Подготовка сервера.
+Создайте виртуальную машину, подключитесь к ней.
+* В рамках учебного проекта сервер развернут на базе Яндекс.Cloud по адресу: http://89.169.191.157/
+
+```
+# Подключение к серверу
+ssh username@server_ip
+
+# Установка Docker
+sudo apt update && sudo apt install docker.io -y
+
+# Установка Docker Compose
+sudo curl -L "https://github.com/docker/compose/releases/latest/download/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
+sudo chmod +x /usr/local/bin/docker-compose
+
+# Добавление пользователя в группу docker
+sudo usermod -aG docker $USER
+# Перезапустите сессию SSH
+```
+#### Настройка окружения
+
+Склонируйте репозиторий проекта 
+```
+git clone https://github.com/nikita-sychev49ru/Atomic_Habits.git
+```
+Разместите репозиторий с проектом на GitHub.
+
+В личном кабинете на GitHub в репозитории с проектом в GitHub Secrets добавьте:
+
+* DOCKER_HUB_USERNAME - ваш логин Docker Hub
+
+* DOCKER_HUB_ACCESS_TOKEN - токен Docker Hub
+
+* SSH_KEY - приватный SSH ключ для доступа к серверу, указанный при создании виртуальной машины
+
+* SSH_USER - пользователь сервера, указанный при создании виртуальной машины (например, user)
+
+* SERVER_IP - IP адрес сервера
+
+* DJANGO_SECRET_KEY - секретный ключ от Джанго приложения.
+
+* POSTGRES_DB - название базы данных, например, Atomic_habits_db
+
+* POSTGRES_USER - пользователь базы данных, по умолчанию - postgres
+          
+* POSTGRES_PASSWORD - пароль от базы данных, произвольный
+          
+* POSTGRES_HOST - по умолчанию - db
+          
+* POSTGRES_PORT - по умолчанию - 5432
+         
+* BOT_TOKEN - токен от телеграмм-бота, для рассылки уведомлений
+          
+* CELERY_BROKER_URL - по умолчанию - redis://redis:6379/0
+          
+* CELERY_RESULT_BACKEND - - по умолчанию - redis://redis:6379/0
+
+Сделайте в репозитории push или pull-request, это автоматически запустит тестирование, создание контейнера и деплой на ваш сервер.
+
+#### Проверка работоспособности
+Перейдите по IP-адресу вашего сервера. Так как фронтенд не реализован, можно увидеть админ-панель или страницы с документацией.
+Для этого добавьте к адресу в адресной строке 'admin/','redoc/' или 'swagger/':
+
+Например:
+http://89.169.191.157/admin/
+http://89.169.191.157/redoc/
+http://89.169.191.157/swagger/
 
 ## Тестирование
 
 В рамках проекта реализовано тестирование всех эндпойнтов с помощью unittest. 
 Отчет о покрытии находится в файле htmlcov_index.html в корне проекта.
 
-## Установка
-
-Для установки и запуска проекта необходимо выполнить следующие шаги:
-
-1.  **Клонируйте репозиторий:**
-
-    ```
-    https://github.com/nikita-sychev49ru/Atomic_Habits.git
-    ```
-
-2.  **Перейдите в папку проекта:**
-
-    ```
-    cd Atomic_Habits
-    ```
-
-3.  **Установите зависимости с помощью Poetry:**
-
-    ```
-    poetry install
-    ```
-    
-4.  **Создайте базу данных и пропишите настройки для доступа к ней в файле .env (образец заполнения в файле .env.sample)**
-
-5.  **Запустите команду запуска сервера, чтобы перейти в веб-приложение**
-    ```
-    python manage.py runserver
-    ```
-
 ## Использование
 
-Для начального заполнения базы данных воспользуйтесь фикстурами
+Для начального заполнения базы данных можно воспользоваться фикстурами:
 ~~~
 python manage.py loaddata users_fixture.json --format json
 python manage.py loaddata habits_fixture.json --format json
@@ -70,8 +124,21 @@ python manage.py loaddata habits_fixture.json --format json
 *   Python 3.13
 *   Poetry (для управления зависимостями)
 *   django (>=5.2.4,<6.0.0)
+*   djangorestframework (>=3.16.1,<4.0.0)
+*   djangorestframework-simplejwt (>=5.5.1,<6.0.0)
+*   requests (>=2.32.5,<3.0.0)
+*   drf-yasg (>=1.21.11,<2.0.0)
+*   django-cors-headers (>=4.9.0,<5.0.0)
 *   psycopg2-binary (>=2.9.10,<3.0.0)
 *   pillow (>=11.3.0,<12.0.0)
+*   celery (>=5.5.3,<6.0.0)
+*   redis (>=6.4.0,<7.0.0)
+*   django-celery-beat (>=2.8.1,<3.0.0)
+*   gevent (>=25.9.1,<26.0.0)
+*   python-dotenv (>=1.1.1)
+*   django-filter (>=25.1)
+*   gunicorn (>=23.0.0,<24.0.0)
+*   whitenoise (>=6.11.0,<7.0.0)
 
 
 ## Лицензия
