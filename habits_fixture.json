@@ -1,0 +1,146 @@
+[
+{
+    "model": "i_can.habit",
+    "pk": 1,
+    "fields": {
+        "action": "заправлять кровать",
+        "user": 2,
+        "place": "дома",
+        "periodicity": 1,
+        "start_time": "07:00:00",
+        "execution_time": 120,
+        "is_pleasant": false,
+        "related_habit": null,
+        "reward": "печенька к кофе",
+        "is_published": false,
+        "created_at": "2025-09-28T08:19:29.882Z",
+        "is_reminder_send": true
+    }
+},
+{
+    "model": "i_can.habit",
+    "pk": 2,
+    "fields": {
+        "action": "выпить кофе со сливками",
+        "user": 2,
+        "place": "на работе",
+        "periodicity": null,
+        "start_time": null,
+        "execution_time": 120,
+        "is_pleasant": true,
+        "related_habit": null,
+        "reward": null,
+        "is_published": false,
+        "created_at": "2025-09-28T08:27:05.998Z",
+        "is_reminder_send": false
+    }
+},
+{
+    "model": "i_can.habit",
+    "pk": 3,
+    "fields": {
+        "action": "разобрать почту",
+        "user": 2,
+        "place": "на работе",
+        "periodicity": 1,
+        "start_time": "08:10:00",
+        "execution_time": 120,
+        "is_pleasant": false,
+        "related_habit": 2,
+        "reward": null,
+        "is_published": false,
+        "created_at": "2025-09-28T08:29:08.279Z",
+        "is_reminder_send": true
+    }
+},
+{
+    "model": "i_can.habit",
+    "pk": 4,
+    "fields": {
+        "action": "купить вкусняшку",
+        "user": 2,
+        "place": "в магазине",
+        "periodicity": null,
+        "start_time": null,
+        "execution_time": 120,
+        "is_pleasant": true,
+        "related_habit": null,
+        "reward": null,
+        "is_published": true,
+        "created_at": "2025-09-28T08:31:20.849Z",
+        "is_reminder_send": false
+    }
+},
+{
+    "model": "i_can.habit",
+    "pk": 5,
+    "fields": {
+        "action": "купить продукты по списку",
+        "user": 2,
+        "place": "в магазине",
+        "periodicity": 4,
+        "start_time": "18:30:00",
+        "execution_time": 120,
+        "is_pleasant": false,
+        "related_habit": 4,
+        "reward": null,
+        "is_published": true,
+        "created_at": "2025-09-28T08:32:21.727Z",
+        "is_reminder_send": false
+    }
+},
+{
+    "model": "i_can.habit",
+    "pk": 6,
+    "fields": {
+        "action": "составить список покупок",
+        "user": 2,
+        "place": "дома",
+        "periodicity": 4,
+        "start_time": "18:25:00",
+        "execution_time": 120,
+        "is_pleasant": false,
+        "related_habit": null,
+        "reward": "добавить в список вкусняшку",
+        "is_published": true,
+        "created_at": "2025-09-28T08:34:32.261Z",
+        "is_reminder_send": false
+    }
+},
+{
+    "model": "i_can.habit",
+    "pk": 7,
+    "fields": {
+        "action": "сделать гимнастику для глаз",
+        "user": 2,
+        "place": "на работе",
+        "periodicity": 1,
+        "start_time": "14:40:00",
+        "execution_time": 120,
+        "is_pleasant": false,
+        "related_habit": null,
+        "reward": "перерыв 5 минут",
+        "is_published": true,
+        "created_at": "2025-09-28T11:31:56.907Z",
+        "is_reminder_send": true
+    }
+},
+{
+    "model": "i_can.habit",
+    "pk": 8,
+    "fields": {
+        "action": "сделать 20 приседаний",
+        "user": 1,
+        "place": null,
+        "periodicity": 1,
+        "start_time": "06:50:00",
+        "execution_time": 90,
+        "is_pleasant": false,
+        "related_habit": null,
+        "reward": "йогурт",
+        "is_published": true,
+        "created_at": "2025-09-28T17:32:44.496Z",
+        "is_reminder_send": false
+    }
+}
+]
